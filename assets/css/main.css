@@ -148,6 +148,10 @@ h6 {
     height: 46px;
     cursor: pointer;
     z-index: 1002;
+    appearance:none;
+    -webkit-appearance:none;
+    border:none;
+    background:transparent;
   }
 
   .bar {
@@ -221,6 +225,7 @@ h6 {
     color: #fff !important;
   }
 }
+
 /* Footer */
 
 .footer {
@@ -246,6 +251,10 @@ h6 {
 .footer-about .logo img {
     max-height: 40px;
     margin-right: 6px;
+    appearance:none;
+    -webkit-appearance:none;
+    border:none;
+    background:transparent;
 }
 
 .footer-about .logo span {
