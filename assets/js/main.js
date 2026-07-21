@@ -222,30 +222,34 @@
 
 })();
 
-document.getElementById('searchGrad').addEventListener('keyup', function() {
-    let filter = this.value.toLowerCase().trim();
-    let kartice = document.querySelectorAll('.grad-kartica');
+const searchInput = document.getElementById('searchGrad');
 
-    kartice.forEach(function(kartica) {
-        let grad = kartica.querySelector('.grad-naziv').textContent.toLowerCase();
-        let jeGlavni = kartica.getAttribute('data-glavni') === 'true';
+if (searchInput) {
+    searchInput.addEventListener('keyup', function() {
+        let filter = this.value.toLowerCase().trim();
+        let kartice = document.querySelectorAll('.grad-kartica');
 
-        if (filter.length > 0) {
-            if (grad.includes(filter)) {
-                kartica.classList.remove('grad-sakriven');
-                kartica.style.setProperty('display', 'block', 'important');
+        kartice.forEach(function(kartica) {
+            let grad = kartica.querySelector('.grad-naziv').textContent.toLowerCase();
+            let jeGlavni = kartica.getAttribute('data-glavni') === 'true';
+
+            if (filter.length > 0) {
+                if (grad.includes(filter)) {
+                    kartica.classList.remove('grad-sakriven');
+                    kartica.style.setProperty('display', 'block', 'important');
+                } else {
+                    kartica.classList.add('grad-sakriven');
+                    kartica.style.setProperty('display', 'none', 'important');
+                }
             } else {
-                kartica.classList.add('grad-sakriven');
-                kartica.style.setProperty('display', 'none', 'important');
+                if (jeGlavni) {
+                    kartica.classList.remove('grad-sakriven');
+                    kartica.style.removeProperty('display');
+                } else {
+                    kartica.classList.add('grad-sakriven');
+                    kartica.style.setProperty('display', 'none', 'important');
+                }
             }
-        } else {
-            if (jeGlavni) {
-                kartica.classList.remove('grad-sakriven');
-                kartica.style.removeProperty('display');
-            } else {
-                kartica.classList.add('grad-sakriven');
-                kartica.style.setProperty('display', 'none', 'important');
-            }
-        }
+        });
     });
-});
+}
